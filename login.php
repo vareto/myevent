@@ -12,7 +12,7 @@
                 <div class="row">
                     
                     <div class="col-md-4 col-md-offset-4">
-                        <img src="archivos/ievent/logomyevent.png" width="300" height="272">
+                        <img src="archivos/ievent/logomyevent.png" width="300" height="245">
                         <h2>TFG 2015/2016 CGG Universidad Pablo de Olavide (Sevilla)</h2>
                         <?php echo '<a href="registrar.php">Registrar</a>' ?>
                         <?php echo '<a href="recuperar.php">Recuperar credenciales</a>' ?>
