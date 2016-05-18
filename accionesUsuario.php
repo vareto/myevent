@@ -277,13 +277,13 @@ if (isset($_POST['habilitar'])) {
             $stm->execute();
             $stm->close();
 
-            mail($_POST['email'], "iEvent - Activación de la cuenta", "Bienvenido a iEvent!
+            mail($_POST['email'], "myEvent - Activación de la cuenta", "Bienvenido a myEvent!
         Gracias por registrarse en nuestro sitio.
-         Su cuenta ha sido creada, y debe ser activada antes de poder ser utilizada.
+        Su cuenta ha sido creada, y debe ser activada antes de poder ser utilizada.
         Para activar la cuenta, haga click en el siguiente enlace o copielo en la
         barra de direcciones del navegador,
      
-        ievent.esy.es/activacion.php?activation=" . $random_key);
+        myevent.esy.es/activacion.php?activation=" . $random_key);
             header('location: login.php');
         } else {
             $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">Ese email se encuentra activo</label></p>';
@@ -308,7 +308,7 @@ if (isset($_POST['recuperarcredenciales'])) {
             $id = traer_id_user($_POST['email']);
             $passnueva = generate_random_key();
             cambiar_pass($passnueva, $id);
-            mail($_POST['email'], "iEvent - Cambio de contraseña", "Le informamos que acaba de cambiar la contraseña de acceso"
+            mail($_POST['email'], "myEvent - Cambio de contraseña", "Le informamos que acaba de cambiar la contraseña de acceso"
                     . "Los nuevos datos de acceso son:"
                     . "email:" . $_POST['email'] . ""
                     . "password:" . $passnueva);
@@ -338,7 +338,7 @@ if (isset($_POST['cambiarPass'])) {
                 header('location: login.php');
                 $email = traer_email_usuario($_SESSION['userid']);
 
-                mail($email, "iEvent - Cambio de contraseña", "Le informamos que acaba de cambiar la contraseña de acceso"
+                mail($email, "myEvent - Cambio de contraseña", "Le informamos que acaba de cambiar la contraseña de acceso"
                         . "Los nuevos datos de acceso son:"
                         . "email:" . $email . ""
                         . "password:" . $_POST['passNueva']);
@@ -385,7 +385,7 @@ if (isset($_POST["registrar"])) {
             $mensaje = '<html><head>
      </head><body>';
             $mensaje .= "<p>Gracias por registrarse en nuestro sitio.
-         Su cuenta ha sido creada, y debe ser activada antes de poder ser utilizada.
+        Su cuenta ha sido creada, y debe ser activada antes de poder ser utilizada.
         Para activar la cuenta, haga click en el siguiente enlace o copielo en la
         barra de direcciones del navegador</p> ";
             $mensaje .= "<a class='enlaceactivacion' style='font-family: verdana, arial, sans-serif;
@@ -398,7 +398,7 @@ if (isset($_POST["registrar"])) {
                                      border-radius: 7px 7px 7px 7px;
                                      -moz-border-radius: 7px 7px 7px 7px;
                                      -webkit-border-radius: 7px 7px 7px 7px;
-                                     border: 0px solid #000000;' href='ievent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
+                                     border: 0px solid #000000;' href='myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
             $mensaje .= "</body></html>";
             mail($_POST['email'], $asunto, $mensaje, $cabeceras);
 

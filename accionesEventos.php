@@ -120,14 +120,14 @@ function crear_invitacion($event, $user) { //crear una invitacion a un usuario a
     $sql = "SELECT email from users where id=$user";
     $array = mysqli_fetch_array(mysqli_query($conn, $sql));
     $email = $array['email'];
-    $asunto = 'Nueva invitacion iEvent';
+    $asunto = 'Nueva invitacion myEvent';
     $cabeceras .= "MIME-Version: 1.0\r\n";
     $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
     $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
     $mensaje = '<html><head>
      </head><body>';
     $mensaje .= "<p>Tiene una nueva invitacion  de <b> $nombre </b> al evento titulado <b> $evento </b>.</p>
-       <p> Recuerde que para mayor informacion sobre el evento debe aceder a su cuenta a traver del siguiente enlace <a href='http://ievent.esy.es'>iEvent</a></p>";
+       <p> Recuerde que para mayor informacion sobre el evento debe aceder a su cuenta a traver del siguiente enlace <a href='http://myevent.esy.es'>iEvent</a></p>";
     $mensaje .= "<p> Tambien puede aceptar/rechazar el evento con los siguentes botones</p>";
     $mensaje .= "<a  class='enlacebotonacepto' style='font-family: verdana, arial, sans-serif;
                                     font-size: 15pt;
@@ -139,7 +139,7 @@ function crear_invitacion($event, $user) { //crear una invitacion a un usuario a
                                     border-radius: 7px 7px 7px 7px;
                                     -moz-border-radius: 7px 7px 7px 7px;
                                     -webkit-border-radius: 7px 7px 7px 7px;
-                                    border: 0px solid #000000;' href='ievent.esy.es/asistenciaevento.php?confirmacion=$si&token=$key'>ACEPTO</a>";
+                                    border: 0px solid #000000;' href='myevent.esy.es/asistenciaevento.php?confirmacion=$si&token=$key'>ACEPTO</a>";
     $mensaje .= "  ";
     $mensaje .= "<a class='enlacebotonrechazo' style='font-family: verdana, arial, sans-serif;
                                      font-size: 15pt;
@@ -151,7 +151,7 @@ function crear_invitacion($event, $user) { //crear una invitacion a un usuario a
                                      border-radius: 7px 7px 7px 7px;
                                      -moz-border-radius: 7px 7px 7px 7px;
                                      -webkit-border-radius: 7px 7px 7px 7px;
-                                     border: 0px solid #000000;' href='ievent.esy.es/asistenciaevento.php?confirmacion=$no&token=$key'>RECHAZO</a>";
+                                     border: 0px solid #000000;' href='myevent.esy.es/asistenciaevento.php?confirmacion=$no&token=$key'>RECHAZO</a>";
     $mensaje .= "</body></html>";
     mail($email, $asunto, $mensaje, $cabeceras);
     $stmt->close();

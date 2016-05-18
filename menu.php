@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">IEvent</a>
+        <a class="navbar-brand" href="index.php">myEvent</a>
     </div>
     <ul class="nav navbar-top-links navbar-right">
         <li class="dropdown">
