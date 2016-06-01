@@ -5,7 +5,7 @@
         <?php
         session_start();
         if (isset($_SESSION['userid'])) {
-            include_once './accionesUsuario.php';
+            include_once '../acciones/accionesUsuario.php';
             $usuario = traer_usuario_editar($_SESSION['userid']);
             ?>
             <div id="wrapper">
@@ -28,7 +28,7 @@
                                                 $_SESSION['error']['perfil']=null;
                                             }
                                             ?>
-                                            <form role="form" id="perfil" action="accionesUsuario.php" method="post" enctype="multipart/form-data" >
+                                            <form role="form" id="perfil" action="../acciones/accionesUsuario.php" method="post" enctype="multipart/form-data" >
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <label>Nombre</label>

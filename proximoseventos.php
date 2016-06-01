@@ -8,7 +8,7 @@
             ?>
             <div id="wrapper">
                 <?php include_once './menu.php'; ?>
-                <?php include_once './accionesEventos.php'; ?>
+                <?php include_once '../acciones/accionesEventos.php'; ?>
                 <?php $eventos = traer_proximos_eventos($_SESSION['userid']) ?>
                 <div id = "page-wrapper">
                     <div class = "container-fluid">
@@ -47,7 +47,7 @@
                                                             } else {
                                                                 echo '¿confirmar asistencia?';
                                                                 ?>
-                                                            <form action = "accionesEventos.php" method = "post">
+                                                            <form action = "../accionesaccionesEventos.php" method = "post">
                                                                 <input type = "hidden" name = "idevento" value = "<?= $a['event_id'] ?>">
                                                                
                                                                 <button type = "submit" name = "asiste" class="btn btn-info btn-circle" data-toggle="tooltip" data-placement="bottom" title="Aceptar invitacion del evento"><i class = "fa fa-check"></i></button>

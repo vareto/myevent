@@ -9,7 +9,7 @@
             <div id="wrapper">
                 <?php
                 include_once './menu.php';
-                require_once './accionesGrupos.php';
+                require_once '../acciones/accionesGrupos.php';
                 $grupos = traer_mis_grupos($_SESSION['userid']);
                 $grupos1 = traer_mis_grupos1($_SESSION['userid']);
                 ?>
@@ -52,7 +52,7 @@
                                                             </form>
                                                                  </label>
                                                                   <label class="checkbox-inline">
-                                                            <form action = "accionesGrupos.php" method = "post">
+                                                            <form action = "../acciones/accionesGrupos.php" method = "post">
                                                                 <input type = "hidden" name = "idGrupo" value = "<?= $a['id'] ?>">
                                                                 <button type = "submit" class="btn btn-default btn-circle" name = "eliminarGrupo" data-toggle="tooltip" data-placement="bottom" title="Eliminar grupo"> <i class = "fa fa-times"></i></button>
                                                             </form>
@@ -93,7 +93,7 @@
                                                             echo '<td>' . $a['description'] . '</td>';
                                                             ?>
                                                         <td>
-                                                            <form action = "accionesGrupos.php" method = "post">
+                                                            <form action = "../acciones/accionesGrupos.php" method = "post">
                                                                 <input type = "hidden" name = "idGrupo" value = "<?= $a['id'] ?>">
                                                                 <input type = "hidden" name = "nameGrupo" value = "<?= $a['name'] ?>">
                                                                 <button type = "submit" class="btn btn-default  btn-circle"  name = "salirGrupo"><i class = "fa fa-times"></i></button>

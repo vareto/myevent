@@ -12,8 +12,8 @@
             <div id="wrapper">
                 <?php
                 include_once 'menu.php';
-                include_once './accionesEventos.php';
-                include_once './accionesFiles.php';
+                include_once '../acciones/accionesEventos.php';
+                include_once '../acciones/accionesFiles.php';
                 $evento = traer_evento($_SESSION['idevento']);
                 $asistentes = traer_asistentes($_SESSION['idevento']);
                 $noAsistentes = traer_no_asistentes($_SESSION['idevento']);
@@ -76,7 +76,7 @@
                                     <button  type="submit" name = "generarWord" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" data-placement="bottom" title="Generar word">Generar word</button>
                                 </form>
                                 <br>
-                                <form action = "accionesEventos.php" method = "post">
+                                <form action = "../acciones/accionesEventos.php" method = "post">
                                     <input type = "hidden" name = "idevento" value = "<?= $evento['id'] ?>">
                                     <button  type="submit" name = "borrarEvento" class="btn btn-danger btn-lg btn-block" data-toggle="tooltip" data-placement="bottom" title="Borrar evento">Borrar evento</button>
                                 </form>
@@ -144,7 +144,7 @@
                                                             echo '<td>' . $a['description'] . '</td>';
                                                             ?>
                                                         <td>
-                                                            <form action = "accionesFiles.php" method = "post" target="_blank">
+                                                            <form action = "../acciones/accionesFiles.php" method = "post" target="_blank">
                                                                 <input type = "hidden" name = "typeFile" value = "<?= $a['typemime'] ?>">
                                                                 <input type = "hidden" name = "urlFile" value = "<?= $a['url'] ?>">
                                                                 <button type = "submit" name = "descargar" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="Descargar fichero"><i class = "glyphicon glyphicon-download-alt"></i></button>

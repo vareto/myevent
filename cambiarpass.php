@@ -5,7 +5,7 @@
         <?php
         session_start();
         if (isset($_SESSION['userid'])) {
-            include_once './accionesContactos.php';
+            include_once '../acciones/accionesContactos.php';
             ?>
             <div id="wrapper">
                 <?php include_once 'menu.php'; ?>
@@ -27,7 +27,7 @@
                                                 $_SESSION['error']['usuario'] = null;
                                             }
                                             ?>
-                                            <form role="form" id="cambiarpass" action="accionesUsuario.php" method="post">
+                                            <form role="form" id="cambiarpass" action="../acciones/accionesUsuario.php" method="post">
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <label>Antigua contraseña</label>

@@ -8,8 +8,8 @@
             ?>
             <div id="wrapper">
                 <?php include_once './menu.php'; ?>
-                <?php include_once './accionesEventos.php'; ?>
-                <?php include_once './accionesFiles.php'; ?>
+                <?php include_once '../acciones/accionesEventos.php'; ?>
+                <?php include_once '../acciones/accionesFiles.php'; ?>
                 <?php
                 if (!isset($_SESSION['nameevento']) || isset($_POST['nameEvento'])) {
                     $_SESSION['nameevento'] = $_POST['nameEvento'];
@@ -48,7 +48,7 @@
                                                                 echo '<td>' . $a['description'] . '</td>';
                                                                 ?>
                                                             <td>
-                                                                <form action = "accionesFiles.php" method = "post">
+                                                                <form action = "../acciones/accionesFiles.php" method = "post">
                                                                     <input type = "hidden" name = "typeFile" value = "<?= $a['typemime'] ?>">
                                                                     <input type = "hidden" name = "urlFile" value = "<?= $a['url'] ?>">
                                                                     <button type = "submit" name = "descargar" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="Descargar fichero"><i class = "glyphicon glyphicon-download-alt"></i></button>

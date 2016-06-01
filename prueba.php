@@ -3,7 +3,7 @@ header('Content-type: application/vnd.ms-word');
 header("Content-Disposition: attachment; filename=" . $_POST['nombreEvento'] . '.doc');
 header("Pragma: no-cache");
 header("Expires: 0");
-require_once './accionesEventos.php';
+require_once '../acciones/accionesEventos.php';
 $asistentes = traer_asistentes($_POST['idevento']);
 $noAsistentes = traer_no_asistentes($_POST['idevento']);
 ?>

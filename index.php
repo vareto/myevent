@@ -11,8 +11,8 @@ define("_access", TRUE);
             ?>
             <div id="wrapper">
                 <?php include_once 'menu.php'; ?>
-                <?php include_once './accionesEventos.php'; ?>
-                <?php require_once './accionesContactos.php'; ?>
+                <?php include_once '../acciones/accionesEventos.php'; ?>
+                <?php require_once '../acciones/accionesContactos.php'; ?>
                 <?php
                 $eventos = traer_mis_eventos_index($_SESSION['userid']);
                 $proximoseventos = traer_proximos_eventos_index($_SESSION['userid']);

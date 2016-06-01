@@ -8,7 +8,7 @@
             ?>
             <div id="wrapper">
                 <?php include_once './menu.php'; ?>
-                <?php include_once './accionesEventos.php'; ?>
+                <?php include_once '../acciones/accionesEventos.php'; ?>
                 <?php $eventos = traer_mis_eventos($_SESSION['userid']); ?>
                 <div id = "page-wrapper">
                     <div class = "container-fluid">
@@ -59,32 +59,7 @@
                                                                         <button type = "submit" name = "invitar" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="Invitar al evento"><i class = "fa fa-users"></i></button>
                                                                     </form>
                                                                 </label>
-
-                                                                
-<!--                                                                    <form action = "accionesEventos.php" method = "post">
-                                                                        <input type = "hidden" name = "idevento" value = "<?= $a['id'] ?>">
-                                                                        <button type = "submit" name = "borrarEvento" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Borrar evento"><i class = "  fa fa-times"></i></button>
-                                                                    </form>-->
-                                                               
-<!--                                                                <label class="checkbox-inline">
-                                                                    <form action = "prueba.php" method = "post">
-                                                                        <input type = "hidden" name = "idevento" value = "<?= $a['id'] ?>">
-                                                                        <input type = "hidden" name = "nombreEvento" value = "<?= $a['name'] ?>">
-                                                                        <input type = "hidden" name = "descripcionEvento" value = "<?= $a['description'] ?>">
-                                                                        <button type = "submit" name = "generarWord" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Generar word"><i class = "fa fa-file-o"></i></button>
-                                                                    </form>
-                                                                </label>-->
-<!--                                                                <label class="checkbox-inline">
-                                                                    <form action = "subirFichero.php" method = "post">
-                                                                        <input type = "hidden" name = "idevento" value = "<?= $a['id'] ?>">
-                                                                        <input type = "hidden" name = "nombreEvento" value = "<?= $a['name'] ?>">
-                                                                        <button type = "submit" name = "subir" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Subir ficheros"><i class = "fa fa-file-o"></i></button>
-                                                                    </form>
-                                                                </label>-->
-
-                                                                
-
-                                                            </div>
+                                                          </div>
                                                         </td> 
                                                         <?php
                                                         echo '</tr>';
