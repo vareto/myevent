@@ -100,7 +100,7 @@
                                                 $_SESSION['error']['evento']=null;
                                             }
                                             ?>
-                                            <form role="form" action="../acciones/accionesEventos.php" method="post" enctype="multipart/form-data" >
+                                            <form role="form" action="accionesEventos.php" method="post" enctype="multipart/form-data" >
                                                 <input type = "hidden" name = "idevento" value = "<?= $_SESSION['idevento'] ?>">
                                                 <div class="form-group" id="adjuntos" name="adjuntos">
                                                     <label>Archivo</label>

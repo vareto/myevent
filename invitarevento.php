@@ -15,8 +15,8 @@
             <div id="wrapper">
                 <?php
                 include_once 'menu.php';
-                include_once '../acciones/accionesContactos.php';
-                include_once '../acciones/accionesGrupos.php';
+                include_once './accionesContactos.php';
+                include_once './accionesGrupos.php';
                 $contactos = traer_mis_contactos_no_invitados($_SESSION['userid'], $_SESSION['idevento']);
                 $contactos1 = traer_mis_contactos_invitados($_SESSION['userid'], $_SESSION['idevento']);
                 $grupos = traer_mis_grupos($_SESSION['userid']);

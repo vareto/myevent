@@ -8,8 +8,9 @@
             ?>
             <div id="wrapper">
                 <?php include_once './menu.php'; ?>
-                <?php include_once '../acciones/accionesEventos.php'; ?>
+                <?php include_once './accionesEventos.php'; ?>
                 <?php $eventos = traer_mis_eventos($_SESSION['userid']); ?>
+                <?php $eventos_ocurridos = traer_mis_eventos_ocurridos($_SESSION['userid']); ?>
                 <div id = "page-wrapper">
                     <div class = "container-fluid">
                         <div class = "row">
@@ -59,13 +60,54 @@
                                                                         <button type = "submit" name = "invitar" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="Invitar al evento"><i class = "fa fa-users"></i></button>
                                                                     </form>
                                                                 </label>
-                                                          </div>
+                                                            </div>
                                                         </td> 
                                                         <?php
                                                         echo '</tr>';
                                                     }
                                                     ?>
-
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="panel panel-default">                             
+                                        <div class="panel-heading">
+                                            Mis eventos pasados
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Nombre</th>
+                                                            <th>Fecha</th>
+                                                            <th>Acciones</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        foreach ($eventos_ocurridos as $a) {
+                                                            echo '<tr>';
+                                                            echo '<td>' . $a['name'] . '</td>';
+                                                            echo '<td>' . cambiar_formato_fecha_mostrar($a['fecha']) . '</td>';
+                                                            ?>
+                                                        <td>
+                                                            <div class="form-group">
+                                                                    <label class="checkbox-inline">
+                                                                    <form action = "evento.php" method = "post">
+                                                                        <input type = "hidden" name = "idevento" value = "<?= $a['id'] ?>">
+                                                                        <button type = "submit" name = "verEvento" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Ver evento"><i class = "fa fa-eye"></i></button>
+                                                                    </form>
+                                                                </label>
+                                                            </div>
+                                                        </td> 
+                                                        <?php
+                                                        echo '</tr>';
+                                                    }
+                                                    ?>
                                                     </tbody>
                                                 </table>
                                             </div>

@@ -7,9 +7,9 @@
         session_start();
         if (isset($_SESSION['userid'])) {
             if (isset($_POST['editar'])) {
-                require_once '../acciones/accionesEventos.php';
-                require_once '../acciones/accionesContactos.php';
-                require_once '../acciones/accionesGrupos.php';
+                require_once './accionesEventos.php';
+                require_once './accionesContactos.php';
+                require_once './accionesGrupos.php';
                 if (!isset($_SESSION['nameevento']) || isset($_POST['nameEvento'])) {
                     $_SESSION['nameevento'] = $_POST['nameEvento'];
                 }
@@ -74,7 +74,7 @@
             } else {
                 $errors = 0;
                 if (isset($_POST["guardar"])) {
-                    include_once '../acciones/accionesEventos.php';
+                    include_once './accionesEventos.php';
                     $_SESSION['error']['evento'] = null;
                     $_SESSION['error']['evento'] = array();
                     $errors = 0;

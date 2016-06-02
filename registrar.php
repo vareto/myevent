@@ -11,7 +11,7 @@
                             <h3 class="panel-title">Registro</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form" action="../acciones/accionesUsuario.php" method="post" id="registro" >
+                            <form role="form" action="accionesUsuario.php" method="post" id="registro" >
                                 <?php
                                 if (isset($_SESSION['error']['usuario'])) {
                                     for ($i = 0; $i < count($_SESSION['error']['usuario']); $i++) {

@@ -5,7 +5,7 @@
         <?php
         session_start();
         if (isset($_SESSION['userid'])) {
-            include_once '../acciones/accionesUsuario.php';
+            include_once './accionesUsuario.php';
             $usuario = traer_usuario_editar($_SESSION['userid']);
             ?>
             <div id="wrapper">
@@ -28,7 +28,7 @@
                                                 $_SESSION['error']['perfil']=null;
                                             }
                                             ?>
-                                            <form role="form" id="perfil" action="../acciones/accionesUsuario.php" method="post" enctype="multipart/form-data" >
+                                            <form role="form" id="perfil" action="accionesUsuario.php" method="post" enctype="multipart/form-data" >
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <label>Nombre</label>
@@ -40,18 +40,22 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Email</label>
-                                                        <input  class="form-control" disabled="true" name="email" id="email" value="<?= $usuario['email'] ?>">
+                                                        <input  class="form-control" name="email" id="email" value="<?= $usuario['email'] ?>">
                                                     </div>
                                                     <div class="form-group">
                                                         <label>Foto perfil</label>
                                                         <input  class="form-control" multiple="true" type="file" name="pic"> 
                                                     </div>
+<!--                                                    <button type = "submit" name = "guardar" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="Guardar evento"><i class = "fa fa-save"></i></button>-->
                                                     <button  type="submit" name = "guardar" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" data-placement="bottom" title="Guardar perfil">Guardar</button>
 
                                                 </fieldset>
+
                                             </form> 
                                             <a href="cambiarpass.php"  name="pic"><label>Cambiar contraseña</label></a> 
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>

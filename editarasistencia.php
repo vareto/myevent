@@ -6,7 +6,7 @@
         session_start();
         if (isset($_SESSION['userid'])) {
             if (isset($_POST['editar'])) {
-                include_once '../acciones/accionesEventos.php';
+                include_once './accionesEventos.php';
                 $_SESSION['idevento'] = $_POST['idevento'];
                 $evento = traer_evento_editar_asistencia($_POST['idevento'], $_SESSION['userid']);
                 ?>
@@ -44,7 +44,7 @@
                 <?php
             } else {
                 if (isset($_POST["guardar"])) {
-                    include_once '../acciones/accionesEventos.php';
+                    include_once './accionesEventos.php';
                     editar_evento_asistencia($_POST['asistencia'], $_SESSION['idevento'], $_SESSION['userid']);
                     header('location: proximoseventos.php');
                 } else {

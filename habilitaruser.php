@@ -21,7 +21,7 @@
                                   $_SESSION['error']['usuario']=null;
                             }
                             ?>
-                            <form role="form" action="../acciones/accionesUsuario.php" method="post" id="activar">
+                            <form role="form" action="accionesUsuario.php" method="post" id="activar">
                                 <fieldset>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="E-mail" id="email" name="email"  autofocus="true">

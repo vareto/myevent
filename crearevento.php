@@ -94,7 +94,7 @@
                                                 $_SESSION['error']['evento'] = null;
                                             }
                                             ?>
-                                            <form role="form" action="../acciones/accionesEventos.php" id="crearevento" method="post" enctype="multipart/form-data" >
+                                            <form role="form" action="accionesEventos.php" id="crearevento" method="post" enctype="multipart/form-data" >
                                                 <div class="form-group">
                                                     <label>Titulo</label>
                                                     <input class="form-control" name="name" id="name"> 

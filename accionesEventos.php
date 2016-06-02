@@ -3,7 +3,23 @@
 function traer_mis_eventos($id) { //traer evento que ha creado e usuario
     include_once 'conexion.php';
     $conn = cogerConexion();
-    $sql = "SELECT * FROM events WHERE user_id=$id";
+    $sql = "SELECT * FROM events WHERE user_id=$id and events.fecha >= '" . date("Y-m-d") . "'";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function traer_mis_eventos_ocurridos($id) { //traer evento que ha creado e usuario y ya han pasado
+    include_once 'conexion.php';
+    $conn = cogerConexion();
+    $sql = "SELECT * FROM events WHERE user_id=$id and events.fecha < '" . date("Y-m-d") . "'";
+    $result = mysqli_query($conn, $sql);
+    return $result;
+}
+
+function traer_proximos_eventos_ocurridos($id) { //traer eventos a los que ha sido el invitado y han ocurrido
+    include_once 'conexion.php';
+    $conn = cogerConexion();
+    $sql = "SELECT events_users.event_id, events.name, events.description, events.fecha, asistencia FROM `events` join events_users on events.id = events_users.event_id join users on events.user_id = users.id where events_users.user_id = $id and users.habilitado = 'y' and events.fecha < '" . date("Y-m-d") . "'";
     $result = mysqli_query($conn, $sql);
     return $result;
 }
@@ -22,6 +38,25 @@ function traer_proximos_eventos($id) { //traer eventos a los que ha sido el invi
     $sql = "SELECT events_users.event_id, events.name, events.description, events.fecha, asistencia FROM `events` join events_users on events.id = events_users.event_id join users on events.user_id = users.id where events_users.user_id = $id and users.habilitado = 'y' and events.fecha >= '" . date("Y-m-d") . "'";
     $result = mysqli_query($conn, $sql);
     return $result;
+}
+
+function es_pasado($id) {
+    include_once 'conexion.php';
+    $conn = cogerConexion();
+    $sql = "SELECT * FROM events WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+    $datos = mysqli_fetch_array($result);
+    
+    $fecha = strtotime($datos['fecha']);
+
+    $fecha_actual = strtotime(date("d-m-Y"));
+    
+    
+    if ($fecha < $fecha_actual) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function traer_proximos_eventos_index($id) { //traer eventos a los que ha sido el invitado y aun no han ocurrido
@@ -96,7 +131,7 @@ function editar_evento_asistencia($asistencia, $idevento, $iduser) {
     header('location: index.php');
 }
 
-function crear_invitacion($event, $user) { //crear una invitacion a un usuario a algun eento nuestro
+function crear_invitacion($event, $user) { //crear una invitacion a un usuario a algun evento nuestro
     include_once 'conexion.php';
     $conn = cogerConexion();
     $key = generate_random_key();
@@ -222,11 +257,11 @@ function es_dueño($iduser, $idevent) {
     $datos = mysqli_fetch_array($result);
     $dueño = $datos['user_id'];
     $retur = null;
-    if($dueño === $iduser){
-        $retur =  true;
-    }else {
-        $retur =  false;
-    } 
+    if ($dueño === $iduser) {
+        $retur = true;
+    } else {
+        $retur = false;
+    }
     return $retur;
 }
 

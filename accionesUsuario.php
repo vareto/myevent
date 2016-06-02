@@ -378,7 +378,7 @@ if (isset($_POST["registrar"])) {
             $stmt->execute();
             $newId = $stmt->insert_id;
             $stmt->close();
-            $asunto = 'myEvent - Activación de la cuenta';
+            $asunto = 'iEvent - Activación de la cuenta';
             $cabeceras .= "MIME-Version: 1.0\r\n";
             $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
             $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";

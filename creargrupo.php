@@ -26,7 +26,7 @@
                                         }
                                         ?>
                                         <div class="panel-body">
-                                            <form role="form" action="../acciones/accionesGrupos.php" method="post" id="creargrupo" >
+                                            <form role="form" action="accionesGrupos.php" method="post" id="creargrupo" >
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <label>Titulo</label>

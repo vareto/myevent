@@ -8,7 +8,7 @@
             ?>
             <div id="wrapper">
                 <?php include_once './menu.php'; ?>
-                <?php include_once '../acciones/accionesContactos.php'; ?>
+                <?php include_once './accionesContactos.php'; ?>
                 <?php $contactos = traer_mis_contactos($_SESSION['userid']) ?>
                 <?php $invitaciones = traer_mis_contactos2($_SESSION['userid']) ?>
                 <div id = "page-wrapper">
@@ -41,7 +41,7 @@
                                                             echo '<td>' . $a['last_name'] . '</td>';
                                                             ?>
                                                                             <td>
-                                                                            <form action = "../acciones/accionesContactos.php" method = "post">
+                                                                            <form action = "accionesContactos.php" method = "post">
                                                                                 <input type = "hidden" name = "idContacto" value = "<?= $a['id'] ?>">
                                                                                 <button type = "submit" name = "eliminarContacto"  class="btn btn-default btn-circle"  data-toggle="tooltip" data-placement="bottom" title="Eliminar contacto"><i class = "fa fa-times"></i></button>
                                                                             </form>
@@ -82,13 +82,13 @@
                                                             ?>
                                                         <td>
                                                             <label class="checkbox-inline">
-                                                            <form action = "../acciones/accionesContactos.php" method = "post">
+                                                            <form action = "accionesContactos.php" method = "post">
                                                                 <input type = "hidden" name = "idUsuario" value = "<?= $a['id'] ?>">
                                                                 <button type = "submit" name = "aceptarInvitacion" class="btn btn-default btn-circle"  data-toggle="tooltip" data-placement="bottom" title="Aceptar invitacion"><i class = "fa fa-check"></i></button>
                                                             </form>
                                                                 </label>
                                                             <label class="checkbox-inline">
-                                                            <form action = "../acciones/accionesContactos.php" method = "post">
+                                                            <form action = "accionesContactos.php" method = "post">
                                                                 <input type = "hidden" name = "idUsuario" value = "<?= $a['id'] ?>">
                                                                 <button type = "submit" name = "rechazarInvitacion" class="btn btn-default btn-circle"  data-toggle="tooltip" data-placement="bottom" title="Rechazar invitacion"><i class = "fa fa-times"></i></button>
                                                             </form>

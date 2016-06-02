@@ -16,7 +16,7 @@
             ?>
             <div id="wrapper">
                 <?php include_once 'menu.php'; ?>
-                <?php require_once '../acciones/accionesContactos.php'; ?>
+                <?php require_once './accionesContactos.php'; ?>
                 <?php
                 $contactos = traer_mis_contactos_add($_SESSION['userid'], $_SESSION['idGrupo']);
                 $contactos1 = traer_mis_contactos_retirar($_SESSION['userid'], $_SESSION['idGrupo']);
@@ -54,7 +54,7 @@
                                                             echo '<td>' . $a['last_name'] . '</td>';
                                                             echo '<td>';
                                                             ?> 
-                                                        <form action = "../acciones/accionesGrupos.php" method = "post">
+                                                        <form action = "accionesGrupos.php" method = "post">
                                                             <input type = "hidden" name = "usuarioAdd" value = "<?= $a['id'] ?>">
                                                             <input type = "hidden" name = "grupoAdd" value = "<?= $_SESSION['idGrupo'] ?>">
                                                             <button type = "submit" class="btn btn-default btn-circle"  name = "addInGroup" data-toggle="tooltip" data-placement="bottom" title="Añadir contacto"><i class = "fa fa-check"></i></button>
@@ -97,7 +97,7 @@
                                                         echo '<td>' . $a['last_name'] . '</td>';
                                                         echo '<td>';
                                                         ?> 
-                                                    <form action = "../acciones/accionesGrupos.php" method = "post">
+                                                    <form action = "accionesGrupos.php" method = "post">
                                                         <input type = "hidden" name = "usuarioAdd" value = "<?= $a['id'] ?>">
                                                         <input type = "hidden" name = "grupoAdd" value = "<?= $_SESSION['idGrupo'] ?>">
                                                         <button type = "submit"  class="btn btn-default btn-circle"  name = "deleteForGroup" data-toggle="tooltip" data-placement="bottom" title="Eliminar contacto"><i class = "fa fa-times"></i></button>

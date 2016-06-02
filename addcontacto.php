@@ -26,7 +26,7 @@
                                         }
                                         ?>
                                         <div class="panel-body">
-                                            <form role="form" action="../acciones/accionesContactos.php" method="post" id="addcontacto">
+                                            <form role="form" action="accionesContactos.php" method="post" id="addcontacto">
                                                 <fieldset>
                                                     <div class="form-group">
                                                         <label>Email</label>
