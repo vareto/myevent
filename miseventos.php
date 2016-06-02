@@ -45,7 +45,7 @@
                                                                         <input type = "hidden" name = "idevento" value = "<?= $a['id'] ?>">
                                                                         <button type = "submit" name = "verEvento" class="btn btn-default btn-circle" data-toggle="tooltip" data-placement="bottom" title="Ver evento"><i class = "fa fa-eye"></i></button>
                                                                     </form>
-                                                                </label>
+                                                                    </label>
                                                                 <label class="checkbox-inline">
                                                                     <form action = "editarevento.php" method = "post">
                                                                          <input type = "hidden" name = "idevento" value = "<?= $a['id'] ?>">
