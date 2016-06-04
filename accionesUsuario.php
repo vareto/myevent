@@ -378,7 +378,7 @@ if (isset($_POST['cambiarPass'])) {
                 $mensaje .= "</body></html>";
                 mail($_POST['email'], $asunto, $mensaje, $cabeceras);
 
-                 header('location: success.php');
+                header('location: logout.php');
             } else {
                 header('location: cambiarpass.php');
             }
