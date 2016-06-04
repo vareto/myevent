@@ -317,10 +317,18 @@ if (isset($_POST['recuperarcredenciales'])) {
             $id = traer_id_user($_POST['email']);
             $passnueva = generate_pass();
             cambiar_pass($passnueva, $id);
-            mail($_POST['email'], "myEvent - Cambio de contraseña", "<p> Le informamos que acaba de cambiar la contraseña de acceso"
-                    . "Los nuevos datos de acceso son:"
-                    . "email:" . $_POST['email'] . ""
-                    . "password:" . $passnueva . "</p>");
+            
+            $asunto = 'myEvent - Cambio de contraseña';
+                $cabeceras .= "MIME-Version: 1.0\r\n";
+                $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
+                $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
+                $mensaje = '<html><head></head><body>';
+                $mensaje .= '<p> Los nuevos datos de acceso son:';
+                $mensaje .= '<html><head></head><body>';
+                $mensaje .= 'password:' . $passnueva .'</`p>';
+                
+                mail($_POST['email'], $asunto, $mensaje, $cabeceras);
+            
             header('location: login.php');
         } else {
             $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">Ese email no tiene cuenta en nuestro servicio</label></p>';
