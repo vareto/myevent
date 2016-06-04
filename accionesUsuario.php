@@ -353,8 +353,8 @@ if (isset($_POST['cambiarPass'])) {
             if (strcmp($_POST['passNueva'], $_POST['passNueva2']) == 0) { //la nueva contraseña coincide
                 
                 cambiar_pass($_POST['passNueva'], $_SESSION['userid']);
-                
-                $email = traer_email_usuario($_SESSION['userid']);
+                 
+                $email = traer_email_user($_SESSION['userid']);
 
                 $asunto = 'myEvent - Cambio de contraseña';
                 $cabeceras .= "MIME-Version: 1.0\r\n";
