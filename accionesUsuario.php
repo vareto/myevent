@@ -64,10 +64,37 @@ function validar_apellidos($ape) {
     return $errors;
 }
 
+function validar_fichero($ficheros) {
+    $errors = 0;
+    $tot = count($_FILES["pic"]["name"]);
+    $con = 0;
+    if ($_FILES["pic"]["error"] != 4 or $tot > 1) {
+        if ((($_FILES["pic"]["type"] == "image/png") ||
+                ($_FILES["pic"]["type"] == "image/jpeg") || ($_FILES["pic"]["type"][$i] == "image/jpg") ||
+                ($_FILES["pic"]["type"] == "image/pjpeg") ) &&
+                ($_FILES["pic"]["size"] < 5000000)) {
+            
+        } else {
+            $_SESSION['error']['perfil'] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">El fichero ' . $_FILES["pic"]["name"] . ' no deben superar los 5MB y deben ser (jpg,png)' . $tot . '</label></p>';
+            $errors++;
+        }
+    }
+    return $errors;
+}
+
 function generate_random_key() {
     $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
     $new_key = "";
     for ($i = 0; $i < 32; $i++) {
+        $new_key .= $chars[rand(0, 35)];
+    }
+    return $new_key;
+}
+
+function generate_pass() {
+    $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+    $new_key = "";
+    for ($i = 0; $i < 20; $i++) {
         $new_key .= $chars[rand(0, 35)];
     }
     return $new_key;
@@ -161,24 +188,6 @@ function cambiar_pass($pass, $userid) { //cambiar pass
         echo "Error updating record: " . $conn->error;
     }
     $conn->close();
-}
-
-function validar_fichero($ficheros) {
-    $errors = 0;
-    $tot = count($_FILES["pic"]["name"]);
-    $con = 0;
-    if ($_FILES["pic"]["error"] != 4 or $tot > 1) {
-        if ((($_FILES["pic"]["type"] == "image/png") ||
-                ($_FILES["pic"]["type"] == "image/jpeg") || ($_FILES["pic"]["type"][$i] == "image/jpg") ||
-                ($_FILES["pic"]["type"] == "image/pjpeg") ) &&
-                ($_FILES["pic"]["size"] < 5000000)) {
-            
-        } else {
-            $_SESSION['error']['perfil'] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">El fichero ' . $_FILES["pic"]["name"] . ' no deben superar los 5MB y deben ser (jpg,png)' . $tot . '</label></p>';
-            $errors++;
-        }
-    }
-    return $errors;
 }
 
 function habilitar_user($email) {
@@ -306,12 +315,12 @@ if (isset($_POST['recuperarcredenciales'])) {
     if ($errors == 0) {
         if (existe_usuario($_POST['email']) == 1) { //si el email existe cambiamos la contraseña y le enviamos un correo con los nuevos datos
             $id = traer_id_user($_POST['email']);
-            $passnueva = generate_random_key();
+            $passnueva = generate_pass();
             cambiar_pass($passnueva, $id);
-            mail($_POST['email'], "myEvent - Cambio de contraseña", "Le informamos que acaba de cambiar la contraseña de acceso"
+            mail($_POST['email'], "myEvent - Cambio de contraseña", "<p> Le informamos que acaba de cambiar la contraseña de acceso"
                     . "Los nuevos datos de acceso son:"
                     . "email:" . $_POST['email'] . ""
-                    . "password:" . $passnueva);
+                    . "password:" . $passnueva . "</p>");
             header('location: login.php');
         } else {
             $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">Ese email no tiene cuenta en nuestro servicio</label></p>';
@@ -338,11 +347,30 @@ if (isset($_POST['cambiarPass'])) {
                 header('location: login.php');
                 $email = traer_email_usuario($_SESSION['userid']);
 
-                mail($email, "myEvent - Cambio de contraseña", "Le informamos que acaba de cambiar la contraseña de acceso"
-                        . "Los nuevos datos de acceso son:"
-                        . "email:" . $email . ""
-                        . "password:" . $_POST['passNueva']);
-                header('location: index.php');
+                $asunto = 'myEvent - Cambio de contraseña';
+                $cabeceras .= "MIME-Version: 1.0\r\n";
+                $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
+                $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
+                $mensaje = '<html><head></head><body>';
+                $mensaje .= "<p>Le informamos que acaba de cambiar la contraseña de acceso</p> ";
+                $mensaje .= "Los nuevos datos de acceso son:";
+                $mensaje .= "email:" . $email . "";
+                $mensaje .= "password:" . $_POST['passNueva'];
+                $mensaje .= "<a class='enlaceactivacion' style='font-family: verdana, arial, sans-serif;
+                                     font-size: 15pt;
+                                     font-weight: bold;
+                                     padding: 4px;
+                                     background-color: blue;
+                                     color: white;
+                                     text-decoration: none;
+                                     border-radius: 7px 7px 7px 7px;
+                                     -moz-border-radius: 7px 7px 7px 7px;
+                                     -webkit-border-radius: 7px 7px 7px 7px;
+                                     border: 0px solid #000000;' href='myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
+                $mensaje .= "</body></html>";
+                mail($_POST['email'], $asunto, $mensaje, $cabeceras);
+
+                 header('location: success.php');
             } else {
                 header('location: cambiarpass.php');
             }
@@ -378,7 +406,7 @@ if (isset($_POST["registrar"])) {
             $stmt->execute();
             $newId = $stmt->insert_id;
             $stmt->close();
-            $asunto = 'iEvent - Activación de la cuenta';
+            $asunto = 'myEvent - Activación de la cuenta';
             $cabeceras .= "MIME-Version: 1.0\r\n";
             $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
             $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
