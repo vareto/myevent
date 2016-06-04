@@ -286,31 +286,6 @@ if (isset($_POST['habilitar'])) {
             $stm->close();
 
             $asunto = 'myEvent - Activación de la cuenta';
-
-            $cabeceras .= "MIME-Version: 1.0\r\n";
-            $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
-            $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
-            $mensaje = '<html><head></head><body>';
-
-            $mensaje .= "<p>Gracias por volver con nosostros";
-            $mensaje .= "Debe activar su cuenta de nuevo para ello pulse en el boton y en el enlace";
-            $mensaje .= "myevent.esy.es/activacion.php?activation = " . $random_key . "</p>";
-            $mensaje .= "<a style = 'font-family: verdana, arial, sans-serif;
-                                     font-size: 15pt;
-                                     font-weight: bold;
-                                     padding: 4px;
-                                     background-color: blue;
-                                     color: white;
-                                     text-decoration: none;
-                                     border-radius: 7px 7px 7px 7px;
-                                     -moz-border-radius: 7px 7px 7px 7px;
-                                     -webkit-border-radius: 7px 7px 7px 7px;
-                                     border: 0px solid #000000;' href = 'myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
-            $mensaje .= "</body></html>";
-            mail($_POST['email'], $asunto, $mensaje, $cabeceras);
-
-
-            $asunto = 'myEvent - Activación de la cuenta';
             $cabeceras .= "MIME-Version: 1.0\r\n";
             $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
             $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
