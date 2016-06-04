@@ -293,8 +293,8 @@ if (isset($_POST['habilitar'])) {
             $mensaje = '<html><head></head><body>';
             $mensaje .= "<p>Gracias por volver con nosostros</p> ";
             $mensaje .= "<p>Debe activar su cuenta de nuevo para ello pulse en el boton y en el enlace</p>";
-            $mensaje .= "<p>myevent.esy.es/activacion.php?activation = " . $random_key."</p>";
-            $mensaje .= "<p><a style = 'font-family: verdana, arial, sans-serif;
+            $mensaje .= "myevent.esy.es/activacion.php?activation = " . $random_key ;
+            $mensaje .= "<a style = 'font-family: verdana, arial, sans-serif;
                                      font-size: 15pt;
                                      font-weight: bold;
                                      padding: 4px;
@@ -304,7 +304,7 @@ if (isset($_POST['habilitar'])) {
                                      border-radius: 7px 7px 7px 7px;
                                      -moz-border-radius: 7px 7px 7px 7px;
                                      -webkit-border-radius: 7px 7px 7px 7px;
-                                     border: 0px solid #000000;' href = 'myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a></p>";
+                                     border: 0px solid #000000;' href = 'myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
             $mensaje .= "</body></html>";
             mail($_POST['email'], $asunto, $mensaje, $cabeceras);
 
@@ -313,7 +313,6 @@ if (isset($_POST['habilitar'])) {
             $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">Ese email se encuentra activo</label></p>';
             header('location: recuperar.php');
         }
-        habilitar_user($_POST['email']);
         header('location: login.php');
     } else {
         header('location: habilitaruser.php');

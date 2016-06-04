@@ -133,7 +133,7 @@
                                         </div>
                                     </div>
                                 <?php } else { ?>
-                                    <h4>No hay asistentes</h4>
+                                    <h4>Todos los contactos asistiran</h4>
                                 <?php } ?>
                             </div>
                             <div class="col-lg-4">
