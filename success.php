@@ -1,14 +1,14 @@
 <html>
     <head>
         <title>iEvent</title>
-        <META HTTP-EQUIV="REFRESH" CONTENT="10;URL=http://www.myevent.esy.es">
+        <META HTTP-EQUIV="REFRESH" CONTENT="10;URL=http://myevent.esy.es">
         <?php include_once './cabezera.php'; ?>
         <script type="text/javascript">
             var num = 10;
             function contador() {
                 num--;
                 if (num == 0)
-                    location = 'http://www.myevent.esy.es';
+                    location = 'http://myevent.esy.es';
                 document.getElementById('seg').innerHTML = num;
             }
         </script>
@@ -20,7 +20,7 @@
                     <h1>Operacion realizada con exito</h1>
                     <h4>En unos segundos seras redirigido a la pagina principal</h4>
                     <p>Redirección en <span id="seg">10</span> segundos.</p>
-                    <a href="http://www.myevent.esy.es">Si no te redirige automaticamente pulse en el enlace</a>
+                    <a href="http://myevent.esy.es">Si no te redirige automaticamente pulse en el enlace</a>
                 </div>
             </div>
         </div>
