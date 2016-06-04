@@ -377,7 +377,7 @@ if (isset($_POST['cambiarPass'])) {
                                      -webkit-border-radius: 7px 7px 7px 7px;
                                      border: 0px solid #000000;' href='myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
                 $mensaje .= "</body></html>";
-                mail($_POST['email'], $asunto, $mensaje, $cabeceras);
+                mail($email, $asunto, $mensaje, $cabeceras);
 
                 header('location: logout.php');
             } else {
