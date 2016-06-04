@@ -343,7 +343,7 @@ if (isset($_POST['recuperarcredenciales'])) {
                 $mensaje .= "<p>Le informamos que acaba de cambiar la contraseña de acceso</p> ";
                 $mensaje .= "<p>Los nuevos datos de acceso son:</p>";
                 $mensaje .= "<p>email:" . $email . "</p>";
-                $mensaje .= "<p>password:" . $_POST['passNueva'] . '</p>';
+                $mensaje .= "<p>password:" . $passnueva . '</p>';
                 $mensaje .= "<p><a style='font-family: verdana, arial, sans-serif;
                                      font-size: 15pt;
                                      font-weight: bold;
