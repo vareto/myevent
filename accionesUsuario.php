@@ -4,7 +4,6 @@ function validar_email($email) {
     $errors = 0;
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-        echo("$email is a valid email address");
         if (trim($email) == '') {
             $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">Debe introducir un email</label></p>';
             $errors++;
@@ -193,7 +192,7 @@ function cambiar_pass($pass, $userid) { //cambiar pass
 function habilitar_user($email) {
     include_once 'conexion.php';
     $conn = cogerConexion();
-    $sql = "SELECT * FROM users WHERE email='$email'  and active='y' and habilitado='n'";
+    $sql = "SELECT * FROM users WHERE email='$email'  and active='n' and habilitado='n'";
     $rec = mysqli_query($conn, $sql);
     $count = 0;
     while ($row = mysqli_fetch_array($rec)) {
@@ -201,7 +200,7 @@ function habilitar_user($email) {
         $result = $row;
     }
     if ($count == 1) {
-        $sql = "UPDATE users set habilitado = 'y' where email = '" . $email . "'";
+        $sql = "UPDATE users set active='y', habilitado = 'y' where email = '" . $email . "'";
         if ($conn->query($sql) === TRUE) {
             echo "Record updated successfully";
         } else {
@@ -286,13 +285,29 @@ if (isset($_POST['habilitar'])) {
             $stm->execute();
             $stm->close();
 
-            mail($_POST['email'], "myEvent - Activación de la cuenta", "Bienvenido a myEvent!
-        Gracias por registrarse en nuestro sitio.
-        Su cuenta ha sido creada, y debe ser activada antes de poder ser utilizada.
-        Para activar la cuenta, haga click en el siguiente enlace o copielo en la
-        barra de direcciones del navegador,
-     
-        myevent.esy.es/activacion.php?activation=" . $random_key);
+            $asunto = 'myEvent - Activación de la cuenta';
+            $cabeceras .= "MIME-Version: 1.0\r\n";
+            $cabeceras .= "Content-Type: text / html;
+            charset = UTF-8\r\n";
+            $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
+            $mensaje = '<html><head></head><body>';
+            $mensaje .= "<p>Gracias por volver con nosostros</p> ";
+            $mensaje .= "<p>Debe activar su cuenta de nuevo para ello pulse en el boton y en el enlace</p>";
+            $mensaje .= "<p>myevent.esy.es/activacion.php?activation = " . $random_key."</p>";
+            $mensaje .= "<p><a style = 'font-family: verdana, arial, sans-serif;
+                                     font-size: 15pt;
+                                     font-weight: bold;
+                                     padding: 4px;
+                                     background-color: blue;
+                                     color: white;
+                                     text-decoration: none;
+                                     border-radius: 7px 7px 7px 7px;
+                                     -moz-border-radius: 7px 7px 7px 7px;
+                                     -webkit-border-radius: 7px 7px 7px 7px;
+                                     border: 0px solid #000000;' href = 'myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a></p>";
+            $mensaje .= "</body></html>";
+            mail($_POST['email'], $asunto, $mensaje, $cabeceras);
+
             header('location: login.php');
         } else {
             $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">Ese email se encuentra activo</label></p>';
@@ -364,7 +379,7 @@ if (isset($_POST['cambiarPass'])) {
                 $mensaje .= "<p>Le informamos que acaba de cambiar la contraseña de acceso</p> ";
                 $mensaje .= "<p>Los nuevos datos de acceso son:</p>";
                 $mensaje .= "<p>email:" . $email . "</p>";
-                $mensaje .= "<p>password:" . $_POST['passNueva']. '</p>';
+                $mensaje .= "<p>password:" . $_POST['passNueva'] . '</p>';
                 $mensaje .= "<p><a style='font-family: verdana, arial, sans-serif;
                                      font-size: 15pt;
                                      font-weight: bold;
@@ -408,7 +423,7 @@ if (isset($_POST["registrar"])) {
 
     if ($errors == 0) {
         if (existe_usuario($_POST['email']) == 0) { //si no exite lo creamos
-            $stmt = $conn->prepare("INSERT INTO users (name, last_name,email,password, activation_key,picuser) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt = $conn->prepare("INSERT INTO users (name, last_name,email,password, activation_key, picuser) VALUES (?, ?, ?, ?, ?, ?)");
             $pic = "./archivos/picusers/default.jpg";
             $password = sha1($_POST['password']);
             $stmt->bind_param('ssssss', $_POST['name'], $_POST['last_name'], $_POST['email'], $password, $random_key, $pic);

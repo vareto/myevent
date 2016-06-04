@@ -447,7 +447,7 @@ if (isset($_POST["crearEvento"])) {
                         $con++;
                         if ($con == 1) {
                             $idcreado = crear_evento($_POST['name'], $_POST['description'], $_SESSION['userid'], $_POST['fecha']);
-                            crear_invitacion_dueño($idcreado, $_SESSION['userid']);
+                            //crear_invitacion_dueño($idcreado, $_SESSION['userid']);
                         }
                         $url = "./archivos/filesevents/" . "archivo" . $hora . $_FILES['userfile']['name'][$i];
                         crear_fichero($_POST['descripcionFicheros'][$i], $idcreado, $url, $typemime);

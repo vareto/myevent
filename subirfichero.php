@@ -76,7 +76,7 @@
             ?>
             <div id="wrapper">
                 <?php
-                 include_once 'menu.php';
+                include_once 'menu.php';
                 if (!isset($_SESSION['nombreEvento'])) {
                     $_SESSION['nombreEvento'] = $_POST['nombreEvento'];
                     $_SESSION['idevento'] = $_POST['idevento'];
@@ -97,7 +97,7 @@
                                                 for ($i = 0; $i < count($_SESSION['error']['evento']); $i++) {
                                                     echo $_SESSION['error']['evento'][$i];
                                                 }
-                                                $_SESSION['error']['evento']=null;
+                                                $_SESSION['error']['evento'] = null;
                                             }
                                             ?>
                                             <form role="form" action="accionesEventos.php" method="post" enctype="multipart/form-data" >
@@ -110,9 +110,9 @@
                                                     <a href="#" onClick="addCampo()">Subir otro archivo</a> 
 
                                                 </div>
-                                                <button type="submit" name="subirFichero" class="btn btn-default">subir</button>
+                                                <button  type="submit" name = "subirFichero" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" data-placement="bottom" title="Subir ficheros">Subir</button>
                                             </form>  
-                                            
+
                                         </div>
                                     </div>
                                 </div>

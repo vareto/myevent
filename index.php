@@ -17,7 +17,6 @@ define("_access", TRUE);
                 $eventos = traer_mis_eventos_index($_SESSION['userid']);
                 $proximoseventos = traer_proximos_eventos_index($_SESSION['userid']);
                 $eventossinconfirmar = num_proximos_eventos_sin_confirmar($_SESSION['userid']);
-
                 $peticionesdeamistad = num_invitaciones_pendientes($_SESSION['userid']);
                 ?>
                 <div id = "page-wrapper">
@@ -85,7 +84,7 @@ define("_access", TRUE);
                                     </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered table-hover">
+                                            <table class="table table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>Nombre</th>
@@ -102,7 +101,7 @@ define("_access", TRUE);
 
                                                         echo '<tr>';
                                                         echo '<td>' . $a['name'] . '</td>';
-                                                        echo '<td>' . $a['description'] . '</td>';
+                                                        echo '<td>' . substr($a['description'], 0, 25) . '</td>';
                                                         echo '<td>' . cambiar_formato_fecha_mostrar($a['fecha']) . '</td>';
                                                         ?>
                                                     <td>
@@ -135,7 +134,7 @@ define("_access", TRUE);
                                     </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
-                                            <table class="table table-striped table-bordered table-hover">
+                                            <table class="table table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th>Nombre</th>
@@ -150,7 +149,7 @@ define("_access", TRUE);
                                                     foreach ($proximoseventos as $a) {
                                                         echo '<tr>';
                                                         echo '<td>' . $a['name'] . '</td>';
-                                                        echo '<td>' . $a['description'] . '</td>';
+                                                        echo '<td>' . substr($a['description'], 0, 25) . '</td>';
                                                         echo '<td>' . $a['fecha'] . '</td>';
                                                         echo '<td>';
                                                         if (strcmp($a['asistencia'], "SI") == 0) {
@@ -172,6 +171,24 @@ define("_access", TRUE);
                                                 ?>
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "modal fade" id = "eliminarCuenta" tabindex = "-1" role = "dialog" aria-labelledby = "myModalLabel" aria-hidden = "true">
+                                <div class = "modal-dialog">
+                                    <div class = "modal-content">
+                                        <div class = "modal-header">
+                                            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">&times;
+                                            </button>
+                                            <h4 class = "modal-title" id = "myModalLabel">Eliminacion de cuenta</h4>
+                                        </div>
+                                        <div class = "modal-body">
+                                            ¿Estas seguro que desas eliminar la cuenta en myEvent?
+                                        </div>
+                                        <div class = "modal-footer">
+                                            <a href="index.php"><button type = "button" class = "btn btn-primary" data-dismiss = "modal">NO</button></a>
+                                            <a href="dropuser.php"><button type = "button" class = "btn btn-default">SI</button></a>
                                         </div>
                                     </div>
                                 </div>

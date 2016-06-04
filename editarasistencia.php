@@ -29,9 +29,27 @@
                                                             <p>SI  <input  class=""  type="radio" name="asistencia" value="SI"> </p>
                                                             <p>NO  <input  class=""  type="radio" name="asistencia" value="NO"> </p>
                                                         </div>
-                                                        <button type="submit" name="guardar" class="btn btn-default">guardar</button>
+                                                        <button  type="submit" name = "guardar" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" data-placement="bottom" title="Guardar asistencia">Guardar</button>
                                                     </fieldset>
                                                 </form>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "modal fade" id = "eliminarCuenta" tabindex = "-1" role = "dialog" aria-labelledby = "myModalLabel" aria-hidden = "true">
+                                    <div class = "modal-dialog">
+                                        <div class = "modal-content">
+                                            <div class = "modal-header">
+                                                <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">&times;
+                                                </button>
+                                                <h4 class = "modal-title" id = "myModalLabel">Eliminacion de cuenta</h4>
+                                            </div>
+                                            <div class = "modal-body">
+                                                ¿Estas seguro que desas eliminar la cuenta en myEvent?
+                                            </div>
+                                            <div class = "modal-footer">
+                                                <a href="index.php"><button type = "button" class = "btn btn-primary" data-dismiss = "modal">NO</button></a>
+                                                <a href="dropuser.php"><button type = "button" class = "btn btn-default">SI</button></a>
                                             </div>
                                         </div>
                                     </div>

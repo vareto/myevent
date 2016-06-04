@@ -2,7 +2,7 @@
 session_start();
 include_once 'conexion.php';
 $conn = cogerConexion();
-$sql1 = "UPDATE users set habilitado = 'n' where id = ". $_SESSION['userid'];
+$sql1 = "UPDATE users set active='n' , habilitado = 'n' where id = " . $_SESSION['userid'];
 if ($conn->query($sql1) === TRUE) {
     echo "Record updated successfully";
 } else {
@@ -10,3 +10,4 @@ if ($conn->query($sql1) === TRUE) {
 }
 $conn->close();
 header('location: logout.php');
+?>

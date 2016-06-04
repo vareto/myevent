@@ -20,7 +20,6 @@
                 $contactos = traer_mis_contactos_no_invitados($_SESSION['userid'], $_SESSION['idevento']);
                 $contactos1 = traer_mis_contactos_invitados($_SESSION['userid'], $_SESSION['idevento']);
                 $grupos = traer_mis_grupos($_SESSION['userid']);
-
                 ?>
                 <div id = "page-wrapper">
                     <div class = "container-fluid">
@@ -36,7 +35,7 @@
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover">
+                                                <table class="table table-striped">
 
                                                     <thead>
                                                         <tr>
@@ -50,7 +49,7 @@
                                                         <?php
                                                         foreach ($contactos as $a) {
                                                             echo '<tr>';
-                                                            echo '<td>' . '<img width="50" height="50" src="' . $a['picuser']. '">' . '</td>';
+                                                            echo '<td>' . '<img width="50" height="50" src="' . $a['picuser'] . '">' . '</td>';
                                                             echo '<td>' . $a['name'] . '</td>';
                                                             echo '<td>' . $a['last_name'] . '</td>';
                                                             echo '<td>';
@@ -80,7 +79,7 @@
                                         </div>
                                         <div class="panel-body">
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover">
+                                                <table class="table table-striped">
                                                     <thead>
                                                         <tr>
                                                             <th>Foto</th>
@@ -93,7 +92,7 @@
                                                         <?php
                                                         foreach ($contactos1 as $n) {
                                                             echo '<tr>';
-                                                            echo '<td>' . '<img width="50" height="50" src="' . $n['picuser']. '">' . '</td>';
+                                                            echo '<td>' . '<img width="50" height="50" src="' . $n['picuser'] . '">' . '</td>';
                                                             echo '<td>' . $n['name'] . '</td>';
                                                             echo '<td>' . $n['last_name'] . '</td>';
                                                             echo '<td>';
@@ -117,7 +116,24 @@
                                 </div>
 
                             </div>
-
+                            <div class = "modal fade" id = "eliminarCuenta" tabindex = "-1" role = "dialog" aria-labelledby = "myModalLabel" aria-hidden = "true">
+                                <div class = "modal-dialog">
+                                    <div class = "modal-content">
+                                        <div class = "modal-header">
+                                            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">&times;
+                                            </button>
+                                            <h4 class = "modal-title" id = "myModalLabel">Eliminacion de cuenta</h4>
+                                        </div>
+                                        <div class = "modal-body">
+                                            ¿Estas seguro que desas eliminar la cuenta en myEvent?
+                                        </div>
+                                        <div class = "modal-footer">
+                                            <a href="index.php"><button type = "button" class = "btn btn-primary" data-dismiss = "modal">NO</button></a>
+                                            <a href="dropuser.php"><button type = "button" class = "btn btn-default">SI</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class = "row">
                             <div class = "col-lg-12">
@@ -130,7 +146,7 @@
                                         <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-bordered table-hover">
+                                                <table class="table table-striped">
 
                                                     <thead>
                                                         <tr>

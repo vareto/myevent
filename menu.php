@@ -48,9 +48,8 @@
                 <li>
                     <a href="#"><i class="fa fa-user fa-fw"></i> Usuario<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                       
-                        <li><a href="perfil.php">Ver perfil</a></li>
-                        <li><a href="dropuser.php">Eliminar cuenta</a></li>
+                        <li><a href="perfil.php" >Ver perfil</a></li>
+                        <li><a href="#" data-toggle="modal" data-target = "#eliminarCuenta">Eliminar cuenta</a></li>
                     </ul>
                 </li>
             </ul>
