@@ -286,14 +286,15 @@ if (isset($_POST['habilitar'])) {
             $stm->close();
 
             $asunto = 'myEvent - Activación de la cuenta';
+
             $cabeceras .= "MIME-Version: 1.0\r\n";
-            $cabeceras .= "Content-Type: text / html;
-            charset = UTF-8\r\n";
+            $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
             $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
             $mensaje = '<html><head></head><body>';
-            $mensaje .= "<p>Gracias por volver con nosostros</p> ";
-            $mensaje .= "<p>Debe activar su cuenta de nuevo para ello pulse en el boton y en el enlace</p>";
-            $mensaje .= "myevent.esy.es/activacion.php?activation = " . $random_key ;
+
+            $mensaje .= "<p>Gracias por volver con nosostros";
+            $mensaje .= "Debe activar su cuenta de nuevo para ello pulse en el boton y en el enlace";
+            $mensaje .= "myevent.esy.es/activacion.php?activation = " . $random_key . "</p>";
             $mensaje .= "<a style = 'font-family: verdana, arial, sans-serif;
                                      font-size: 15pt;
                                      font-weight: bold;
@@ -305,6 +306,27 @@ if (isset($_POST['habilitar'])) {
                                      -moz-border-radius: 7px 7px 7px 7px;
                                      -webkit-border-radius: 7px 7px 7px 7px;
                                      border: 0px solid #000000;' href = 'myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
+            $mensaje .= "</body></html>";
+            mail($_POST['email'], $asunto, $mensaje, $cabeceras);
+
+
+            $asunto = 'myEvent - Activación de la cuenta';
+            $cabeceras .= "MIME-Version: 1.0\r\n";
+            $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
+            $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
+            $mensaje = '<html><head></head><body>';
+            $mensaje .= "<p>Gracias por volver con nosotros, debe activar su cuenta de nuevo para ello pulse en el boton o en el enlace  http://myevent.esy.es/activacion.php?activation=".$random_key . "</p>";
+            $mensaje .= "<a class='enlaceactivacion' style='font-family: verdana, arial, sans-serif;
+                                     font-size: 15pt;
+                                     font-weight: bold;
+                                     padding: 4px;
+                                     background-color: blue;
+                                     color: white;
+                                     text-decoration: none;
+                                     border-radius: 7px 7px 7px 7px;
+                                     -moz-border-radius: 7px 7px 7px 7px;
+                                     -webkit-border-radius: 7px 7px 7px 7px;
+                                     border: 0px solid #000000;' href='myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
             $mensaje .= "</body></html>";
             mail($_POST['email'], $asunto, $mensaje, $cabeceras);
 
@@ -433,8 +455,7 @@ if (isset($_POST["registrar"])) {
             $cabeceras .= "MIME-Version: 1.0\r\n";
             $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
             $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
-            $mensaje = '<html><head>
-     </head><body>';
+            $mensaje = '<html><head></head><body>';
             $mensaje .= "<p>Gracias por registrarse en nuestro sitio.
         Su cuenta ha sido creada, y debe ser activada antes de poder ser utilizada.
         Para activar la cuenta, haga click en el siguiente enlace o copielo en la
