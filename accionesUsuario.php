@@ -187,7 +187,7 @@ function cambiar_pass($pass, $userid) { //cambiar pass
     } else {
         echo "Error updating record: " . $conn->error;
     }
-     if ($conn->query($sql1) === TRUE) {
+    if ($conn->query($sql1) === TRUE) {
         echo "Record updated successfully";
     } else {
         echo "Error updating record: " . $conn->error;
@@ -371,7 +371,7 @@ if (isset($_POST['cambiarPass'])) {
             if (strcmp($_POST['passNueva'], $_POST['passNueva2']) == 0) { //la nueva contraseña coincide
                 cambiar_pass($_POST['passNueva'], $_SESSION['userid']);
 
-               
+
                 $email = traer_email_user($_SESSION['userid']);
 
                 $asunto = 'myEvent - Cambio de contraseña';
@@ -399,9 +399,12 @@ if (isset($_POST['cambiarPass'])) {
 
                 header('location: logout.php');
             } else {
+                            $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">las nuevas contraseñas no coinciden</label></p>';
+
                 header('location: cambiarpass.php');
             }
         } else {
+            $_SESSION['error']['usuario'][] = '<p><label style="color:#FF0000;" class="control-label" for="inputError">Debe introducir su contraseña antigua correcta </label></p>';
             header('location: cambiarpass.php');
         }
     } else {
