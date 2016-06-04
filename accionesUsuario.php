@@ -181,7 +181,13 @@ function cambiar_pass($pass, $userid) { //cambiar pass
     include_once 'conexion.php';
     $conn = cogerConexion();
     $sql = "UPDATE users set password = '" . sha1($pass) . "' where id = $userid";
+    $sql1 = "UPDATE users set active = 'n', habilitado= 'n' where id = $userid";
     if ($conn->query($sql) === TRUE) {
+        echo "Record updated successfully";
+    } else {
+        echo "Error updating record: " . $conn->error;
+    }
+     if ($conn->query($sql1) === TRUE) {
         echo "Record updated successfully";
     } else {
         echo "Error updating record: " . $conn->error;
@@ -290,7 +296,7 @@ if (isset($_POST['habilitar'])) {
             $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
             $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
             $mensaje = '<html><head></head><body>';
-            $mensaje .= "<p>Gracias por volver con nosotros, debe activar su cuenta de nuevo para ello pulse en el boton o en el enlace  http://myevent.esy.es/activacion.php?activation=".$random_key . "</p>";
+            $mensaje .= "<p>Gracias por volver con nosotros, debe activar su cuenta de nuevo para ello pulse en el boton o en el enlace  http://myevent.esy.es/activacion.php?activation=" . $random_key . "</p>";
             $mensaje .= "<a class='enlaceactivacion' style='font-family: verdana, arial, sans-serif;
                                      font-size: 15pt;
                                      font-weight: bold;
@@ -365,6 +371,7 @@ if (isset($_POST['cambiarPass'])) {
             if (strcmp($_POST['passNueva'], $_POST['passNueva2']) == 0) { //la nueva contraseña coincide
                 cambiar_pass($_POST['passNueva'], $_SESSION['userid']);
 
+               
                 $email = traer_email_user($_SESSION['userid']);
 
                 $asunto = 'myEvent - Cambio de contraseña';
