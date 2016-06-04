@@ -41,9 +41,7 @@
                                                         <label>Repite nueva contraseña</label>
                                                         <input id="passNueva2" type="password"  class="form-control" name="passNueva2">
                                                     </div>
-
-
-                                                    <button type = "submit" name = "cambiarPass" class="btn btn-primary btn-lg btn-circle" data-toggle="tooltip" data-placement="bottom" title="Guardar evento">Guardar</button>
+                                                    <button type = "submit" name = "cambiarPass" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" data-placement="bottom" title="Guardar evento">Guardar</button>
                                                 </fieldset>
 
                                             </form> 

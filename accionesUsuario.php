@@ -362,10 +362,10 @@ if (isset($_POST['cambiarPass'])) {
                 $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
                 $mensaje = '<html><head></head><body>';
                 $mensaje .= "<p>Le informamos que acaba de cambiar la contraseña de acceso</p> ";
-                $mensaje .= "Los nuevos datos de acceso son:";
-                $mensaje .= "email:" . $email . "";
-                $mensaje .= "password:" . $_POST['passNueva'];
-                $mensaje .= "<a class='enlaceactivacion' style='font-family: verdana, arial, sans-serif;
+                $mensaje .= "<p>Los nuevos datos de acceso son:</p>";
+                $mensaje .= "<p>email:" . $email . "</p>";
+                $mensaje .= "<p>password:" . $_POST['passNueva']. '</p>';
+                $mensaje .= "<p><a style='font-family: verdana, arial, sans-serif;
                                      font-size: 15pt;
                                      font-weight: bold;
                                      padding: 4px;
@@ -375,7 +375,7 @@ if (isset($_POST['cambiarPass'])) {
                                      border-radius: 7px 7px 7px 7px;
                                      -moz-border-radius: 7px 7px 7px 7px;
                                      -webkit-border-radius: 7px 7px 7px 7px;
-                                     border: 0px solid #000000;' href='myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a>";
+                                     border: 0px solid #000000;' href='myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a></p>";
                 $mensaje .= "</body></html>";
                 mail($email, $asunto, $mensaje, $cabeceras);
 
