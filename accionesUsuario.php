@@ -351,8 +351,9 @@ if (isset($_POST['cambiarPass'])) {
     if ($errors == 0) {
         if (comprobar_pass($_POST['passAntigua'], $_SESSION['userid']) == 1) { //sabe la contraseña vieja
             if (strcmp($_POST['passNueva'], $_POST['passNueva2']) == 0) { //la nueva contraseña coincide
+                
                 cambiar_pass($_POST['passNueva'], $_SESSION['userid']);
-                header('location: login.php');
+                
                 $email = traer_email_usuario($_SESSION['userid']);
 
                 $asunto = 'myEvent - Cambio de contraseña';
