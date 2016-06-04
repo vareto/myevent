@@ -177,11 +177,11 @@ function comprobar_pass($pass, $userid) { //comprobar si la pass que introduzco 
     }
 }
 
-function cambiar_pass($pass, $userid) { //cambiar pass
+function cambiar_pass($pass, $userid, $activation) { //cambiar pass
     include_once 'conexion.php';
     $conn = cogerConexion();
     $sql = "UPDATE users set password = '" . sha1($pass) . "' where id = $userid";
-    $sql1 = "UPDATE users set active = 'n', habilitado= 'n' where id = $userid";
+    $sql1 = "UPDATE users set active = 'n', habilitado= 'n', activation_key='$activation' where id = $userid";
     if ($conn->query($sql) === TRUE) {
         echo "Record updated successfully";
     } else {
@@ -328,23 +328,35 @@ if (isset($_POST['recuperarcredenciales'])) {
     $_SESSION['error']['usuario'] = array();
     $errors = 0;
     $errors += validar_email($_POST['email']);
-
+    $random_key = generate_random_key();
     if ($errors == 0) {
         if (existe_usuario($_POST['email']) == 1) { //si el email existe cambiamos la contraseña y le enviamos un correo con los nuevos datos
             $id = traer_id_user($_POST['email']);
             $passnueva = generate_pass();
             cambiar_pass($passnueva, $id);
-
+            $email = $_POST['email'];
             $asunto = 'myEvent - Cambio de contraseña';
-            $cabeceras .= "MIME-Version: 1.0\r\n";
-            $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
-            $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
-            $mensaje = '<html><head></head><body>';
-            $mensaje .= '<p> Los nuevos datos de acceso son:';
-            $mensaje .= '<html><head></head><body>';
-            $mensaje .= 'password:' . $passnueva . '</`p>';
-
-            mail($_POST['email'], $asunto, $mensaje, $cabeceras);
+                $cabeceras .= "MIME-Version: 1.0\r\n";
+                $cabeceras .= "Content-Type: text/html; charset=UTF-8\r\n";
+                $cabeceras .= "X-Mailer:PHP/" . phpversion() . "\n";
+                $mensaje = '<html><head></head><body>';
+                $mensaje .= "<p>Le informamos que acaba de cambiar la contraseña de acceso</p> ";
+                $mensaje .= "<p>Los nuevos datos de acceso son:</p>";
+                $mensaje .= "<p>email:" . $email . "</p>";
+                $mensaje .= "<p>password:" . $_POST['passNueva'] . '</p>';
+                $mensaje .= "<p><a style='font-family: verdana, arial, sans-serif;
+                                     font-size: 15pt;
+                                     font-weight: bold;
+                                     padding: 4px;
+                                     background-color: blue;
+                                     color: white;
+                                     text-decoration: none;
+                                     border-radius: 7px 7px 7px 7px;
+                                     -moz-border-radius: 7px 7px 7px 7px;
+                                     -webkit-border-radius: 7px 7px 7px 7px;
+                                     border: 0px solid #000000;' href='myevent.esy.es/activacion.php?activation=$random_key'>ACTIVAR CUENTA</a></p>";
+                $mensaje .= "</body></html>";
+                mail($email, $asunto, $mensaje, $cabeceras);
 
             header('location: login.php');
         } else {
@@ -369,7 +381,7 @@ if (isset($_POST['cambiarPass'])) {
     if ($errors == 0) {
         if (comprobar_pass($_POST['passAntigua'], $_SESSION['userid']) == 1) { //sabe la contraseña vieja
             if (strcmp($_POST['passNueva'], $_POST['passNueva2']) == 0) { //la nueva contraseña coincide
-                cambiar_pass($_POST['passNueva'], $_SESSION['userid']);
+                cambiar_pass($_POST['passNueva'], $_SESSION['userid'],$random_key);
 
 
                 $email = traer_email_user($_SESSION['userid']);
