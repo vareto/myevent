@@ -5,6 +5,7 @@ function traer_mis_eventos($id) { //traer evento que ha creado e usuario
     $conn = cogerConexion();
     $sql = "SELECT * FROM events WHERE user_id=$id and events.fecha >= '" . date("Y-m-d") . "'";
     $result = mysqli_query($conn, $sql);
+    cerrarConexion($conn);
     return $result;
 }
 
@@ -13,6 +14,7 @@ function traer_mis_eventos_ocurridos($id) { //traer evento que ha creado e usuar
     $conn = cogerConexion();
     $sql = "SELECT * FROM events WHERE user_id=$id and events.fecha < '" . date("Y-m-d") . "'";
     $result = mysqli_query($conn, $sql);
+    cerrarConexion($conn);
     return $result;
 }
 
@@ -21,6 +23,7 @@ function traer_proximos_eventos_ocurridos($id) { //traer eventos a los que ha si
     $conn = cogerConexion();
     $sql = "SELECT events_users.event_id, events.name, events.description, events.fecha, asistencia FROM `events` join events_users on events.id = events_users.event_id join users on events.user_id = users.id where events_users.user_id = $id and users.habilitado = 'y' and events.fecha < '" . date("Y-m-d") . "'";
     $result = mysqli_query($conn, $sql);
+    cerrarConexion($conn);
     return $result;
 }
 
@@ -29,6 +32,7 @@ function traer_mis_eventos_index($id) { //traer evento que ha creado e usuario
     $conn = cogerConexion();
     $sql = "SELECT * FROM events WHERE user_id=$id" . " order by events.fecha asc limit 5";
     $result = mysqli_query($conn, $sql);
+    cerrarConexion($conn);
     return $result;
 }
 
@@ -37,6 +41,7 @@ function traer_proximos_eventos($id) { //traer eventos a los que ha sido el invi
     $conn = cogerConexion();
     $sql = "SELECT events_users.event_id, events.name, events.description, events.fecha, asistencia FROM `events` join events_users on events.id = events_users.event_id join users on events.user_id = users.id where events_users.user_id = $id and users.habilitado = 'y' and events.fecha >= '" . date("Y-m-d") . "'";
     $result = mysqli_query($conn, $sql);
+    cerrarConexion($conn);
     return $result;
 }
 
@@ -46,12 +51,12 @@ function es_pasado($id) {
     $sql = "SELECT * FROM events WHERE id=$id";
     $result = mysqli_query($conn, $sql);
     $datos = mysqli_fetch_array($result);
-    
+
     $fecha = strtotime($datos['fecha']);
 
     $fecha_actual = strtotime(date("d-m-Y"));
-    
-    
+
+
     if ($fecha < $fecha_actual) {
         return true;
     } else {
@@ -64,6 +69,7 @@ function traer_proximos_eventos_index($id) { //traer eventos a los que ha sido e
     $conn = cogerConexion();
     $sql = "SELECT events_users.event_id, events.name, events.description, events.fecha, asistencia FROM `events` join events_users on events.id = events_users.event_id join users on events.user_id = users.id where events_users.user_id = $id and users.habilitado = 'y' and events.fecha >= '" . date("Y-m-d") . "'" . " and events.user_id != $id order by events.fecha asc limit 5";
     $result = mysqli_query($conn, $sql);
+    cerrarConexion($conn);
     return $result;
 }
 
@@ -73,6 +79,7 @@ function num_proximos_eventos_sin_confirmar($id) { //traer eventos a los que ha 
     $sql = "SELECT events_users.event_id, events.name, events.description, events.fecha, asistencia FROM `events` join events_users on events.id = events_users.event_id join users on events.user_id = users.id where events_users.user_id = $id and users.habilitado = 'y' and events.fecha >= '" . date("Y-m-d") . "'" . "and events_users.asistencia = ''";
     $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
+    cerrarConexion($conn);
     return $num;
 }
 
@@ -93,6 +100,7 @@ function traer_evento_editar_asistencia($idevent, $iduser) { //obtener datos de 
     $sql = "SELECT * FROM `events` join events_users where events.id = events_users.event_id and events_users.user_id = $iduser and events.id =" . $idevent;
     $result = mysqli_query($conn, $sql);
     $a = mysqli_fetch_array($result);
+    cerrarConexion($conn);
     return $a;
 }
 
@@ -102,6 +110,7 @@ function traer_evento_editar($id) {
     $sql = "SELECT * FROM events WHERE id=$id";
     $result = mysqli_query($conn, $sql);
     $a = mysqli_fetch_array($result);
+    cerrarConexion($conn);
     return $a;
 }
 
@@ -255,6 +264,7 @@ function es_dueño($iduser, $idevent) {
     $sql = "SELECT user_id FROM events where id= $idevent";
     $result = mysqli_query($conn, $sql);
     $datos = mysqli_fetch_array($result);
+    cerrarConexion($conn);
     $dueño = $datos['user_id'];
     $retur = null;
     if ($dueño === $iduser) {
@@ -547,7 +557,7 @@ if (isset($_POST["subirFichero"])) {
                         crear_fichero($_POST['descripcionFicheros'][$i], $idevento, $url, $typemime);
 // Si no es un archivo repetido y no hubo ningun error, procedemos a subir a la carpeta /archivos, seguido de eso mostramos la imagen subida
                         move_uploaded_file($_FILES["userfile"]["tmp_name"][$i], $url);
-                        header('location: miseventos.php');
+                        header('location: evento.php');
                     }
                 }
             }

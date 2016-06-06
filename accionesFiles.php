@@ -18,15 +18,29 @@ function traer_ficheos_eventos($evento) {
     return $result;
 }
 
+function eliminar_fichero($url) {
+    include_once 'conexion.php';
+    $conn = cogerConexion();
+    $sql = "DELETE from files where url = '$url'";
+    mysqli_query($conn, $sql);
+    cerrarConexion($conn);
+}
+
 if (isset($_POST['descargar'])) {
-    header("Content-disposition: attachment; filename=".$_POST['urlFile']);
-    header("Content-type:". $_POST['typeFile']);
+    header("Content-disposition: attachment; filename=" . $_POST['urlFile']);
+    header("Content-type:" . $_POST['typeFile']);
     readfile($_POST['urlFile']);
 }
 
-if (isset($_POST['ver'])) { 
-    header("Content-disposition: inline; filename=".$_POST['urlFile']);
-    header("Content-type:". $_POST['typeFile']);
+if (isset($_POST['ver'])) {
+    header("Content-disposition: inline; filename=" . $_POST['urlFile']);
+    header("Content-type:" . $_POST['typeFile']);
     readfile($_POST['urlFile']);
 //    header("location: ficheros.php");
+}
+
+if (isset($_POST['deleteFile'])) {
+    eliminar_fichero($_POST['urlFile']);
+    unlink($_POST['urlFile']);
+    header('location: evento.php');
 }

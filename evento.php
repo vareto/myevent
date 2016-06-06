@@ -11,9 +11,9 @@
             ?>
             <div id="wrapper">
                 <?php
-                include_once 'menu.php';
-                include_once './accionesEventos.php';
-                include_once './accionesFiles.php';
+                require_once 'menu.php';
+                require_once './accionesEventos.php';
+                require_once './accionesFiles.php';
                 $evento = traer_evento($_SESSION['idevento']);
                 $asistentes = traer_asistentes($_SESSION['idevento']);
                 $noAsistentes = traer_no_asistentes($_SESSION['idevento']);
@@ -48,12 +48,10 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <?php if (count($asistentes) >= 1 && vacio($asistentes)) { ?>
-
                                     <div class="panel panel-default">   
                                         <div class="panel-heading">
                                             Asistentes
                                         </div>
-                                        <!-- /.panel-heading -->
                                         <div class="panel-body">
                                             <div class="table-responsive">
                                                 <table class="table table-striped">
@@ -81,7 +79,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 <?php } else { ?>
                                     <h4>No hay asistentes</h4>
                                 <?php } ?>
@@ -137,8 +134,7 @@
                                 <?php } ?>
                             </div>
                             <div class="col-lg-4">
-                                <?php
-                                if (mysqli_num_rows($ficheros) >= 1) { ?>
+                                <?php if (mysqli_num_rows($ficheros) >= 1) { ?>
 
                                     <div class="panel panel-default">                             
                                         <div class="panel-heading">
@@ -155,44 +151,48 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                        foreach ($ficheros as $a) {
-                                                            echo '<tr>';
-                                                            echo '<td>' . $a['description'] . '</td>';
-                                                            ?>
-                                                        <td>
-                                                            <form action = "accionesFiles.php" method = "post" target="_blank">
-                                                                <input type = "hidden" name = "typeFile" value = "<?= $a['typemime'] ?>">
-                                                                <input type = "hidden" name = "urlFile" value = "<?= $a['url'] ?>">
-                                                                <button type = "submit" name = "descargar" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="Descargar fichero"><i class = "glyphicon glyphicon-download-alt"></i></button>
-                                                                <button type = "submit" name = "ver" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="ver fichero"><i class = "glyphicon glyphicon-eye-open"></i></button>
-                                                            </form>
-
-                                                        </td> 
-                                                        <?php
-                                                        echo '</tr>';
-                                                    }
+                                                            foreach ($ficheros as $a) {
+                                                                echo '<tr>';
+                                                                echo '<td>' . $a['description'] . '</td>';
+                                                                ?>
+                                                            <td>
+                                                                <form action = "accionesFiles.php" method = "post" target="_blank">
+                                                                    <input type = "hidden" name = "typeFile" value = "<?= $a['typemime'] ?>">
+                                                                    <input type = "hidden" name = "urlFile" value = "<?= $a['url'] ?>">
+                                                                    <button type = "submit" name = "descargar" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="Descargar fichero"><i class = "glyphicon glyphicon-download-alt"></i></button>
+                                                                    <button type = "submit" name = "ver" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="ver fichero"><i class = "glyphicon glyphicon-eye-open"></i></button>
+                                                                </form>
+                                                                <form action = "accionesFiles.php" method = "post">
+                                                                    <input type = "hidden" name = "urlFile" value = "<?= $a['url'] ?>">
+                                                                    <button type = "submit" name = "deleteFile" class="btn btn-default  btn-circle" data-toggle="tooltip" data-placement="bottom" title="ver fichero"><i class = "fa fa-times"></i></button>
+                                                                </form>
+                                                            </td> 
+                                                            <?php
+                                                            echo '</tr>';
+                                                        }
                                                     ?>
-
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
                                     </div>
-
+                                    <?php
+                                } else {
+                                    ?>
+                                    <h4>No hay Ficheros</h4>
                                     <?php
                                 }
                                 ?>
-                                <h4>No hay Ficheros</h4>
-                                
                                 <?php if ($dueño == true && $pasado != true) { ?>
                                     <form action = "subirfichero.php" method = "post">
                                         <input type = "hidden" name = "idevento" value = "<?= $evento['id'] ?>">
                                         <input type = "hidden" name = "nombreEvento" value = "<?= $evento['name'] ?>">
                                         <button  type="submit" name = "subir" class="btn btn-info btn-lg btn-block" data-toggle="tooltip" data-placement="bottom" title="Subir ficheros">Subir ficheros</button>
                                     </form>
-                                <?php } ?>
+                                    <?php
+                                }
+                                ?>
                             </div>
-
                             <div class = "modal fade" id = "eliminarCuenta" tabindex = "-1" role = "dialog" aria-labelledby = "myModalLabel" aria-hidden = "true">
                                 <div class = "modal-dialog">
                                     <div class = "modal-content">
@@ -223,7 +223,6 @@
                                             ¿Estas seguro que desas eliminar el evento?
                                         </div>
                                         <div class = "modal-footer">
-
                                             <form action = "accionesEventos.php" method = "post">
                                                 <input type = "hidden" name = "idevento" value = "<?= $evento['id'] ?>">
                                                 <button type = "button"  class = "btn btn-primary" data-dismiss = "modal">NO</button>
@@ -236,7 +235,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <?php
         } else {
