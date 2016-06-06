@@ -455,8 +455,9 @@ if (isset($_POST["crearEvento"])) {
                         $typemime = $_FILES["userfile"]["type"][$i];
                         $idcreado;
                         $con++;
+                        $date = cambiar_formato_fecha_guardar($_POST['fecha']);
                         if ($con == 1) {
-                            $idcreado = crear_evento($_POST['name'], $_POST['description'], $_SESSION['userid'], $_POST['fecha']);
+                            $idcreado = crear_evento($_POST['name'], $_POST['description'], $_SESSION['userid'], $date);
                             //crear_invitacion_dueño($idcreado, $_SESSION['userid']);
                         }
                         $url = "./archivos/filesevents/" . "archivo" . $hora . $_FILES['userfile']['name'][$i];
