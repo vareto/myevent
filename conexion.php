@@ -7,3 +7,6 @@ function cogerConexion() {
     }
     return $conn;
 }
+function cerrarConexion($conn) {
+    mysqli_close($conn);
+}
