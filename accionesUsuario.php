@@ -333,7 +333,7 @@ if (isset($_POST['recuperarcredenciales'])) {
         if (existe_usuario($_POST['email']) == 1) { //si el email existe cambiamos la contraseña y le enviamos un correo con los nuevos datos
             $id = traer_id_user($_POST['email']);
             $passnueva = generate_pass();
-            cambiar_pass($passnueva, $id);
+            cambiar_pass($passnueva, $id, $random_key);
             $email = $_POST['email'];
             $asunto = 'myEvent - Cambio de contraseña';
                 $cabeceras .= "MIME-Version: 1.0\r\n";
