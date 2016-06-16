@@ -7,10 +7,13 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
+                         <?php echo '<a href="login.php">Pagina principal</a>' ?>
                         <div class="panel-heading">
                             <h3 class="panel-title">Registro</h3>
                         </div>
                         <div class="panel-body">
+                           
+
                             <form role="form" action="accionesUsuario.php" method="post" id="registro" >
                                 <?php
                                 if (isset($_SESSION['error']['usuario'])) {
@@ -20,6 +23,7 @@
                                     $_SESSION['error']['usuario'] = null;
                                 }
                                 ?>
+
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Nombre</label>
@@ -51,7 +55,7 @@
                 // allow any non-whitespace characters as the host part
                 return this.optional(element) || /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/.test(value);
             }, 'Debe introducir un email correcto');
-            
+
             $("#registro").validate({
                 rules: {
                     password: {
