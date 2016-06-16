@@ -100,7 +100,7 @@
                                                     <input class="form-control" name="name" id="name"> 
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Description</label>
+                                                    <label>Descripcion</label>
                                                     <input class="form-control"  name="description" id="description"> 
                                                 </div>
                                                 <div class="form-group">

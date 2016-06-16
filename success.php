@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>iEvent</title>
+        <title>myEvent</title>
         <META HTTP-EQUIV="REFRESH" CONTENT="10;URL=http://myevent.esy.es">
         <?php include_once './cabezera.php'; ?>
         <script type="text/javascript">

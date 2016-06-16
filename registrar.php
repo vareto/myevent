@@ -37,7 +37,7 @@
                                         <label>Password</label>
                                         <input  type="password" class="form-control" name="password" id="password"> 
                                     </div>
-                                    <button type="submit" name="registrar" class="btn btn-default">Registrar</button>
+                                    <button type="submit" name="registrar" class="btn btn-lg btn-success btn-block">Registrar</button>
                                 </fieldset>
                             </form>                       
                         </div>
