@@ -8,6 +8,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
+                    <?php echo '<a href="login.php">Pagina principal</a>' ?>
+
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Activar usuario</h3>
@@ -18,7 +20,7 @@
                                 for ($i = 0; $i < count($_SESSION['error']['usuario']); $i++) {
                                     echo $_SESSION['error']['usuario'][$i];
                                 }
-                                  $_SESSION['error']['usuario']=null;
+                                $_SESSION['error']['usuario'] = null;
                             }
                             ?>
                             <form role="form" action="accionesUsuario.php" method="post" id="activar">
@@ -35,7 +37,7 @@
                 </div>
             </div>
         </div>
-<?php include_once 'pie.php'; ?>
+        <?php include_once 'pie.php'; ?>
         <script type="text/javascript">
             jQuery.validator.addMethod("laxEmail", function (value, element) {
                 // allow any non-whitespace characters as the host part
