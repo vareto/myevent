@@ -7,7 +7,6 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
                     <div class="login-panel panel panel-default">
-                         <?php echo '<a href="login.php">Pagina principal</a>' ?>
                         <div class="panel-heading">
                             <h3 class="panel-title">Registro</h3>
                         </div>

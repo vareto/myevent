@@ -11,7 +11,6 @@
                     
 
                     <div class="login-panel panel panel-default">
-                        <?php echo '<a href="login.php">Pagina principal</a>' ?>
                         <div class="panel-heading">
                             <h3 class="panel-title">Activar usuario</h3>
                         </div>
